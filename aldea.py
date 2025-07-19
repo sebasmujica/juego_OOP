@@ -13,10 +13,6 @@ class Aldea:
         if 0 <= fila_tablero < self.filas_tablero and 0 <= columna_tablero < self.columnas_tablera:
             self.mapa[fila_tablero][columna_tablero] = '🏘️'
     
-    def agregar_lago(self,fila_tablero,columna_tablero):
-        if 0 <= fila_tablero < self.filas_tablero and 0 <= columna_tablero < self.columnas_tablera:
-            self.mapa[fila_tablero][columna_tablero] = '🌊'
-    
     def agregar_calle(self, fila_tablero,columna_tablero):
          if 0 <= fila_tablero < self.filas_tablero and 0 <= columna_tablero < self.columnas_tablera:
             self.mapa[fila_tablero][columna_tablero] = '🛣️'
