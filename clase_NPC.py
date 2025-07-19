@@ -29,3 +29,27 @@ class NPCFacil(NPC):
             "perro": "💡 Pista: Es el mejor amigo del hombre..."
         }
         return pistas.get(self.respuesta, "💡 Piensa bien en la pregunta...")
+    
+    
+# Clase NPC Nivel Difícil
+class NPCDificil(NPC):
+    def __init__(self, x, y, nombre, acertijo, respuesta):
+        # NPCs difíciles tienen solo 10 segundos para responder
+        super().__init__(x, y, nombre, acertijo, respuesta, 10, "Difícil")
+        self.intentos_fallidos = 0
+        
+    def verificar_respuesta(self, respuesta_jugador):
+        """Los NPCs difíciles son más estrictos con las respuestas"""
+        respuesta_limpia = respuesta_jugador.strip().lower()
+        es_correcta = respuesta_limpia == self.respuesta
+        
+        if not es_correcta:
+            self.intentos_fallidos += 1
+            if self.intentos_fallidos >= 2:
+                print("💀 Demasiados intentos fallidos. ¡Tendrás que ser más cuidadoso!")
+        
+        return es_correcta
+    
+    def mostrar_advertencia(self):
+        """Los NPCs difíciles muestran advertencias especiales"""
+        return f"🔥 NIVEL DIFÍCIL - Solo tienes {self.tiempo_limite} segundos. ¡Piensa rápido!"
